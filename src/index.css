@@ -1,0 +1,121 @@
+html, body, .fullHeight {
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+ul {
+  padding: 0;
+  margin: 0 0 5px 0;
+  border-bottom: 1px solid #191a1f;
+}
+li {
+  display: inline-block;
+  margin: 25px 40px;
+}
+.nav {
+  color: #191a1f;
+  text-decoration: none;
+}
+.nav:hover {
+  cursor: pointer;
+  color: #fa4c6e;
+}
+.tasksList {
+  position:  absolute;
+  top: 158px;
+  margin: 10px 41px;
+}
+.dashboard {
+  height: calc(100% - 79px);
+}
+.tasksList > button {
+  width: 334px;
+  height: 52px;
+  border-radius: 3px;
+  background: #ffffff;
+  border: none;
+  font-size: 19px;
+  font-family: Roboto;
+  color: #4c70fe;
+  text-align: center;
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.29);
+}
+.listContainer {
+  border-radius: 4px;
+  width: 294px;
+  margin-top: 9px;
+  height: 100%;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.29);
+}
+.listContainer:first-child {
+  color: #909090;
+}
+.descriptionTask {
+  margin: 7px 0;
+}
+.editBtn {
+  border-radius: 4px;
+  width: 51px;
+  border: none;
+  font-size: 14px;
+  height: 27px;
+  background: #4c70fe;
+  color: #ffffff;
+  outline: none;
+}
+.deleteBtn {
+  outline: none;
+  border: none;
+  background: inherit;
+}
+.formContainer {
+  position: absolute;
+  top: 79px;
+  right: 0;
+  background: #ffffff;
+  height: 100%;
+  width: 497px;
+}
+.formContainer > div {
+  padding: 23px 5px 23px 40px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.preView {
+  padding: 0px 37px;
+  background: #f0f0f0;
+}
+.preView > button {
+  border-radius: 4px;
+  width: 150px;
+  height: 40px;
+  background: #4c70fe;
+  border: none;
+  color: #ffffff;
+  outline: none;
+  font-size: 18px;
+}
+address {
+  font-size: 16px;
+  font-style: inherit;
+  margin-bottom: 26px;
+}
+.servicesContainer > button {
+  background-color: inherit;
+  border: none;
+  margin: 0px 19px;
+  vertical-align: middle;
+}
+h2 {
+  margin: 0;
+  font-size: 14px;
+  color: #909090;
+}
+.content {
+  margin: 17px 0px;
+}
