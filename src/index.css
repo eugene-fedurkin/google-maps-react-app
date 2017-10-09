@@ -1,5 +1,6 @@
 html, body, .fullHeight {
   height: 100%;
+  overflow-x: hidden;
 }
 body {
   margin: 0;
@@ -10,11 +11,18 @@ body {
 ul {
   padding: 0;
   margin: 0 0 5px 0;
-  border-bottom: 1px solid #191a1f;
 }
 li {
   display: inline-block;
-  margin: 25px 40px;
+  margin: 0 34px;
+  font-size: 16px;
+  padding: 25px 0;
+}
+li:first-child {
+  margin-right: 82px;
+}
+li:last-child {
+  float: right;
 }
 .nav {
   color: #191a1f;
@@ -30,7 +38,7 @@ li {
   margin: 10px 41px;
 }
 .dashboard {
-  height: calc(100% - 79px);
+  height: calc(100% - 74px);
 }
 .tasksList > button {
   width: 334px;
@@ -38,6 +46,7 @@ li {
   border-radius: 3px;
   background: #ffffff;
   border: none;
+  outline: none;
   font-size: 19px;
   font-family: Roboto;
   color: #4c70fe;
@@ -52,6 +61,7 @@ li {
   padding: 20px;
   background: #ffffff;
   box-shadow: 0px 1px 2px rgba(0,0,0,0.29);
+  overflow: hidden;
 }
 .listContainer:first-child {
   color: #909090;
@@ -59,7 +69,7 @@ li {
 .descriptionTask {
   margin: 7px 0;
 }
-.editBtn {
+.editBtn, .btnLeft {
   border-radius: 4px;
   width: 51px;
   border: none;
@@ -68,8 +78,21 @@ li {
   background: #4c70fe;
   color: #ffffff;
   outline: none;
+  margin-right: 5px;
 }
-.deleteBtn {
+.editBtn, .btnLeft, .deleteBtn, .btnRight {
+  cursor: pointer;
+}
+.deleteBtn:hover, .btnRight:hover {
+  border: 1px solid #4c70fe;
+}
+.editBtn:active, .btnLeft:active {
+  background: #002CE0;
+}
+.deleteBtn, .btnRight {
+  height: 25px;
+  width: 49px;
+  border-radius: 4px;
   outline: none;
   border: none;
   background: inherit;
@@ -79,7 +102,7 @@ li {
   top: 79px;
   right: 0;
   background: #ffffff;
-  height: 100%;
+  height: calc(100% - 79px);
   width: 497px;
 }
 .formContainer > div {
@@ -105,11 +128,29 @@ address {
   font-style: inherit;
   margin-bottom: 26px;
 }
-.servicesContainer > button {
+.servicesContainer {
+  display: flex;
+}
+.servicesContainer span {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.servicesContainer span > button {
   background-color: inherit;
   border: none;
-  margin: 0px 19px;
+  outline: none;
+  width: 75px;
+  height: 75px;
+  margin: 0px 7px;
   vertical-align: middle;
+}
+.clicked {
+  border: 1px solid #4C70FE!important;
+  border-radius: 50%!important;
+}
+.nameService {
+  font-size: 14px;
 }
 h2 {
   margin: 0;
@@ -118,4 +159,94 @@ h2 {
 }
 .content {
   margin: 17px 0px;
+}
+.content > button {
+  background: inherit;
+  border: none;
+  font-size: 17px;
+  color: #191A1F;
+  outline: none;
+  padding: 0px 17px;
+  height: 40px;
+  line-height: 40px;
+}
+.clickedTaskBtn {
+  border: 1px solid #4C70FE!important;
+  border-radius: 18px!important;
+}
+input {
+  padding: 6px 0;
+  width: 423px;
+  font-size: 18px;
+  outline: none;
+  letter-spacing: 0.1px;
+  border: none;
+}
+.outSideModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.3);
+  height: 100%;
+}
+.modal {
+  background: white;
+  width: 392px;
+  padding: 30px 30px 20px;
+  height: 182px;
+  position: absolute;
+  top: calc(50% - 116px);
+  left: calc(50% - 226px);
+  box-shadow: 0 2px 15px rgba(0,0,0,0.5);
+  height: 101px;
+}
+.modal > h2 {
+  color: rgba(0, 0, 0, 0.87);
+  margin-bottom: 20px;
+  font-size: 21px;
+}
+
+/*--------------------------------animation------------------------*/
+.form-enter {
+  width: 0;
+}
+.form-enter.form-enter-active {
+  width: 497px;
+  transition: width 300ms linear;
+}
+.form-leave {
+  width: 497px;
+}
+.form-leave.form-leave-active {
+  width: 0;
+  transition: width 300ms linear;
+}
+
+.task-appear {
+  transform: translateX(-372px);
+  opacity: 0.3;
+}
+.task-appear.task-appear-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform .3s linear, opacity .5s linear;
+}
+
+.modal-enter {
+  opacity: 0;
+}
+.modal-enter.modal-enter-active {
+  opacity: 1;
+  transition: opacity 200ms linear;
+}
+.modal-leave {
+  opacity: 1;
+}
+.modal-leave.modal-leave-active {
+  opacity: 0;
+  transition: opacity 300ms linear;
+}
+.activeLink {
+  border-top: 4px solid #1A1B1F;
 }

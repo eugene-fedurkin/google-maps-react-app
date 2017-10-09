@@ -15,8 +15,7 @@ export default class Map extends Component {
         this.setState({ position: event.latLng, isMarkerShown: true });
         let lat = event.latLng.lat().toString().slice(0, 9);
         let lng = event.latLng.lng().toString().slice(0, 9);
-        console.log(lat, lng)
-        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&result_type=street_address&key=AIzaSyCXHioGLeLWvHGHdO47hiwu2VlUzb1fZiA`).then(resp => resp.json()).then(resp => console.log(resp.results[0].formatted_address)).catch(error => console.log('no information here'));
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&result_type=street_address&key=AIzaSyCXHioGLeLWvHGHdO47hiwu2VlUzb1fZiA`).then(resp => resp.json()).then(resp => this.props.toPassAddress(resp.results[0].formatted_address)).catch(error => console.log('no information here'));
     }
 
     render() {

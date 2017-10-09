@@ -6,6 +6,7 @@ import JobUp from './components/job-up.c';
 import Hist from './components/history.c';
 import Dashboard from './components/dashboard.c';
 import Header from './components/header.c';
+import Profile from './components/profile.c';
 
 import { Route, BrowserRouter } from 'react-router-dom';
 
@@ -19,6 +20,7 @@ ReactDOM.render(
             <Route path='/' exact component={Dashboard} />
             <Route path='/job' component={JobUp} />
             <Route path='/history' component={Hist} />
+            <Route path='/profile' component={Profile} />
         </div>
     </BrowserRouter>,
      document.getElementById('root'));
