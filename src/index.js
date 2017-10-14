@@ -1,17 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App.c';
-import JobUp from './components/job-up.c';
-import Hist from './components/history.c';
-import Dashboard from './components/dashboard.c';
-import Header from './components/header.c';
-import Profile from './components/profile.c';
-
 import { Route, BrowserRouter } from 'react-router-dom';
-
-import registerServiceWorker from './registerServiceWorker';
-
+import registerServiceWorker from './register-service-worker';
+import './index.css';
+import Header from './components/header.component';
+import Dashboard from './components/dashboard.component';
+import JobUp from './components/job-up.component';
+import Hist from './components/history.component';
+import Profile from './components/profile.component';
 
 ReactDOM.render(
     <BrowserRouter>
@@ -23,5 +19,7 @@ ReactDOM.render(
             <Route path='/profile' component={Profile} />
         </div>
     </BrowserRouter>,
-     document.getElementById('root'));
+    document.getElementById('root')
+);
+
 registerServiceWorker();
