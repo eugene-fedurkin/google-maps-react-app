@@ -19,7 +19,7 @@ export default class Header extends Component {
 
     render() {
         return (
-            <div>
+            <header>
                 <ul>
                     <li><Link onClick={this.toActiveLink}
                         className="nav" to="job">JobUp</Link></li>
@@ -30,7 +30,7 @@ export default class Header extends Component {
                     <li><Link onClick={this.toActiveLink}
                         className="nav" to="profile">PROFILE</Link></li>
                 </ul>
-            </div>
+            </header>
         );
     }
 }

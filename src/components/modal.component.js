@@ -27,6 +27,7 @@ export default class Modal extends Component {
             show: false,
             okHandler: () => {}
         });
+        this.props.closeModal();
     };
 
     execute() {

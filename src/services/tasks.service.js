@@ -9,7 +9,7 @@ export default class TasksService {
     }
 
     constructor() {
-        TasksService.nextId = 0;
+        TasksService.nextId = +localStorage.id || 0;
         this.store = {};
         this.storeUpdateHandlers = [];
     }
@@ -26,28 +26,35 @@ export default class TasksService {
     create(rawTask) {
         rawTask.id = ++TasksService.nextId;
         let task = new TaskModel(rawTask);
-        if (!this.store[task.address]) this.store[task.address] = [];
-        this.store[task.address].push(task);
+        if (!localStorage[task.address]) localStorage[task.address] = '[]';
+        let tasks = JSON.parse(localStorage[task.address]);
+        tasks.push(task);
+        localStorage[task.address] = JSON.stringify(tasks);
+        localStorage.id = rawTask.id;
         this.emit();
     }
 
     update(rawTask) {
         let task = new TaskModel(rawTask);
-        if (!this.store[task.address]) throw new Error('Cannot find task');
+        console.log('task', task)
 
-        let taskIndex = this.store[task.address].findIndex(t => t.id === task.id);
+        if (!localStorage[task.address]) throw new Error('Cannot find task');
+        let tasks = JSON.parse(localStorage[task.address]);
+        let taskIndex = tasks.findIndex(t => t.id === task.id);
         if (taskIndex < 0) throw new Error('Cannot find task');
-
-        this.store[task.address].splice(taskIndex, 1, task);
+        tasks.splice(taskIndex, 1, task);
+        localStorage[task.address] = JSON.stringify(tasks);
+        console.log('taskIndex', taskIndex)
         this.emit();
     }
 
     delete(task) {
-        if (this.store[task.address]) {
-            let taskIndex = this.store[task.address]
-                .findIndex(t => t.id === task.id);
+        if (localStorage[task.address]) {
+            let tasks = JSON.parse(localStorage[task.address]);
+            let taskIndex = tasks.findIndex(t => t.id === task.id);
             if (taskIndex >= 0) {
-                this.store[task.address].splice(taskIndex, 1);
+                tasks.splice(taskIndex, 1);
+                localStorage[task.address] = JSON.stringify(tasks)
                 this.emit();
             }
         }

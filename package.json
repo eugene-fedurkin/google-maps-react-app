@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^16.0.0",
     "react-addons-css-transition-group": "^15.6.2",
+    "react-custom-scrollbars": "^4.1.2",
     "react-dom": "^16.0.0",
     "react-google-maps": "^8.3.5",
     "react-router": "^4.2.0",

@@ -27,6 +27,11 @@ export default class Dashboard extends Component {
         this.setState({ formIsOpen: isOpen });
     };
 
+    openCreateForm = () => {
+        this.setState({ taskIdForEdit: null })
+        this.toggleForm(true);
+    }
+
     openEditForm = (taskId) => {
         this.setState({ taskIdForEdit: taskId });
         this.toggleForm(true);
@@ -42,6 +47,9 @@ export default class Dashboard extends Component {
 
         return this.map;
     };
+    closeModal = () => {
+        this.setState({ formIsOpen: false })
+    }
 
     render() {
         const Maps = this.getMap();
@@ -53,13 +61,14 @@ export default class Dashboard extends Component {
                     mapElement={<div style={{ height: `100%` }} />} />
 
                 <TaskList onEditTask={this.openEditForm}
-                    onNewTask={() => this.toggleForm(true)}
-                    address={this.state.address} />
+                    onNewTask={() => this.openCreateForm()}
+                    address={this.state.address}
+                    formIsOpen={this.state.formIsOpen} />
 
                 <ReactCSSTransitionGroup
                         transitionName="form"
-                        transitionEnterTimeout={500}
-                        transitionLeaveTimeout={300}>
+                        transitionEnterTimeout={200}
+                        transitionLeaveTimeout={200}>
                     {this.state.formIsOpen && <Form
                         address={this.state.address}
                         onActionExecuted={() => this.toggleForm(false)}
@@ -70,7 +79,7 @@ export default class Dashboard extends Component {
                         transitionName="modal"
                         transitionEnterTimeout={500}
                         transitionLeaveTimeout={300}>
-                    <Modal />
+                    <Modal closeModal={this.closeModal} />
                 </ReactCSSTransitionGroup>
             </div>
         );

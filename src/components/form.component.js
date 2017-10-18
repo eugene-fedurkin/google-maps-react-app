@@ -36,9 +36,10 @@ export default class Form extends Component {
     }
 
     initializeTaskForEdit = (props) => {
-        if (this.tasksService.store[props.address]) {
-            let taskForEdit = this.tasksService.store[props.address]
+        if (localStorage[props.address]) {
+            let taskForEdit = JSON.parse(localStorage[props.address])
                 .find(t => t.id === props.taskId);
+                console.log(props ,taskForEdit, JSON.parse(localStorage[props.address]))
             if (taskForEdit) {
                 this.setState({
                     address: taskForEdit.address,
@@ -48,6 +49,22 @@ export default class Form extends Component {
                 });
             }
         }
+
+
+
+
+        // if (this.tasksService.store[props.address]) {
+        //     let taskForEdit = this.tasksService.store[props.address]
+        //         .find(t => t.id === props.taskId);
+        //     if (taskForEdit) {
+        //         this.setState({
+        //             address: taskForEdit.address,
+        //             serviceType: taskForEdit.serviceType,
+        //             taskType: taskForEdit.taskType,
+        //             taskDescription: taskForEdit.taskDescription
+        //         });
+        //     }
+        // }
     };
 
     createTask = () => {
@@ -110,8 +127,8 @@ export default class Form extends Component {
                     <div className="content">{title}</div>
                     <address>My address is {this.props.address || '...(Please choose an address on the map)' }</address>
                     {this.props.taskId
-                        ? <button onClick={this.update}>EDIT</button>
-                        : <button onClick={this.createTask}>CREATE TASK</button>}
+                        ? <button onClick={this.update} className="active">EDIT</button>
+                        : <button onClick={this.createTask} className="active">CREATE TASK</button>}
                 </div>
                 <div>
                     <h2>LOCATION</h2>

@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import Task from './task.component';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { Scrollbars } from 'react-custom-scrollbars';
 import TasksService from '../services/tasks.service';
 import ModalDialogService from '../services/modal-dialog.service';
 
@@ -10,7 +11,9 @@ export default class TaskList extends Component {
         this.tasksService = TasksService.getSingletonInstance();
         this.tasksService.subscribe(store => this.setTasks(store));
         this.modalDialogService = ModalDialogService.getSingletonInstance();
-        this.state = { tasks: [] };
+        this.state = { 
+            tasks: []
+        };
     }
 
     componentWillReceiveProps(nextProps) {
@@ -18,7 +21,9 @@ export default class TaskList extends Component {
     }
 
     setTasks = (address) => {
-        const tasks = this.tasksService.store[address || this.props.address] || [];
+        const tasks = localStorage[address || this.props.address] 
+            ? JSON.parse(localStorage[address || this.props.address])
+            : [];
         this.setState({ tasks: tasks });
     };
 
@@ -29,23 +34,28 @@ export default class TaskList extends Component {
     };
 
     render() {
-        const tasks = this.state.tasks.map((task, index) =>
-            <ReactCSSTransitionGroup
-                transitionName="task"
-                transitionAppear={true}
-                transitionAppearTimeout={500}
-                transitionEnter={false}
-                transitionLeave={false}
-                key={index}>
-                <Task task={task}
-                    onDelete={this.deleteTask}
-                    onEdit={this.props.onEditTask} />
-            </ReactCSSTransitionGroup>
-        );
         return (
             <div className="tasksList">
-                <button onClick={this.props.onNewTask}> + New Task </button>
-                {tasks}
+                {this.props.formIsOpen 
+                    ? <button className="disableLightBtn"> + New Task </button> 
+                    : <button onClick={this.props.onNewTask} className="active"> + New Task </button>}
+                <Scrollbars style={{width: 345}}
+                        autoHeight
+                        autoHeightMax={640}>
+                        <ReactCSSTransitionGroup
+                            transitionName="task"
+                            transitionEnterTimeout={300} transitionLeaveTimeout={300}>
+                            {this.state.tasks.map((task, index) => {
+                                return (
+                                <Task task={task}
+                                    key={index}
+                                    onDelete={this.deleteTask}
+                                    onEdit={this.props.onEditTask}
+                                    formIsOpen={this.props.formIsOpen} />
+                                )
+                            })}
+                    </ReactCSSTransitionGroup>
+                </Scrollbars>
             </div>
         );
     }

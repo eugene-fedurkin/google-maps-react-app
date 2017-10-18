@@ -20,6 +20,10 @@ li {
 }
 li:first-child {
   margin-right: 82px;
+  font-size: 20px;
+}
+li:first-child a {
+  color: #FA4C6E;
 }
 li:last-child {
   float: right;
@@ -46,6 +50,7 @@ li:last-child {
   border-radius: 3px;
   background: #ffffff;
   border: none;
+  margin-bottom: 9px;
   outline: none;
   font-size: 19px;
   font-family: Roboto;
@@ -53,11 +58,25 @@ li:last-child {
   text-align: center;
   box-shadow: 0px 1px 2px rgba(0,0,0,0.29);
 }
+.active:hover {
+  cursor: pointer;
+  opacity: 0.9;
+  transition: opacity .2s linear;
+}
+.disableDarkBtn {
+  background: #727F9D!important;
+  opacity: 0.6;
+}
+.disableLightBtn {
+  color: #727F9D!important;
+}
+.selectedTask {
+  border-right: 3px solid #4c70fe;
+}
 .listContainer {
   border-radius: 4px;
   width: 294px;
-  margin-top: 9px;
-  height: 100%;
+  margin-bottom: 9px;
   padding: 20px;
   background: #ffffff;
   box-shadow: 0px 1px 2px rgba(0,0,0,0.29);
@@ -65,9 +84,12 @@ li:last-child {
 }
 .listContainer:first-child {
   color: #909090;
+  font-size: 16px;
 }
 .descriptionTask {
-  margin: 7px 0;
+  margin: 10px 0;
+  font-size: 20px;
+  color: #191A1F;
 }
 .editBtn, .btnLeft {
   border-radius: 4px;
@@ -80,11 +102,8 @@ li:last-child {
   outline: none;
   margin-right: 5px;
 }
-.editBtn, .btnLeft, .deleteBtn, .btnRight {
+.btnLeft, .btnRight {
   cursor: pointer;
-}
-.deleteBtn:hover, .btnRight:hover {
-  border: 1px solid #4c70fe;
 }
 .editBtn:active, .btnLeft:active {
   background: #002CE0;
@@ -99,10 +118,10 @@ li:last-child {
 }
 .formContainer {
   position: absolute;
-  top: 73px;
+  top: 78px;
   right: 0;
   background: #ffffff;
-  height: calc(100% - 79px);
+  height: calc(100% - 78px);
   width: 497px;
 }
 .formContainer > div {
@@ -124,8 +143,10 @@ li:last-child {
   font-size: 18px;
 }
 address {
+  max-height: 38px;
   font-size: 16px;
   font-style: inherit;
+  overflow: hidden;
   margin-bottom: 26px;
 }
 .servicesContainer {
@@ -209,28 +230,36 @@ input {
 
 /*--------------------------------animation------------------------*/
 .form-enter {
-  width: 0;
+  right: -497px;
 }
 .form-enter.form-enter-active {
-  width: 497px;
-  transition: width 300ms linear;
+  right: 0px;
+  transition: right 300ms linear;
 }
 .form-leave {
-  width: 497px;
+  right: 0px;
 }
 .form-leave.form-leave-active {
-  width: 0;
-  transition: width 300ms linear;
+  right: -497px;
+  transition: right 300ms linear;
 }
 
-.task-appear {
-  transform: translateX(-372px);
+.task-enter {
   opacity: 0.3;
+  transform: translateX(-372px);
 }
-.task-appear.task-appear-active {
+.task-enter.task-enter-active {
   transform: translateX(0);
   opacity: 1;
-  transition: transform .3s linear, opacity .5s linear;
+  transition: transform .3s linear, opacity .3s linear;
+}
+.task-leave {
+  opacity: 1;
+  transition: transform .3s linear, opacity .3s linear;
+}
+.task-leave.task-leave-active {
+  opacity: 0.3;
+  transform: translateX(-372px);
 }
 
 .modal-enter {
@@ -238,7 +267,7 @@ input {
 }
 .modal-enter.modal-enter-active {
   opacity: 1;
-  transition: opacity 200ms linear;
+  transition: opacity 900ms linear;
 }
 .modal-leave {
   opacity: 1;

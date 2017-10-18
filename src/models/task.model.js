@@ -8,16 +8,16 @@ export default class TaskModel {
         this.taskType = raw.taskType ? raw.taskType : '';
         this.taskDescription = raw.taskDescription ? raw.taskDescription : '';
         this.dueDate = raw.dueDate ? raw.dueDate
-            : (new Date(Date.now() + (1000 * 60 * 60 * 24))).toLocaleString();
+            : this.getTitle();
     }
 
     getTitle() {
-        let text = 'I need a ';
-        if (this.serviceType) {
-            text += `${this.serviceType} to `
-            if (this.taskType) text += this.taskType;
-        }
+        const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+        const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
-        return text;
+        let day = days[new Date().getDay() - 1];
+        let month = months[new Date().getMonth() - 1];
+        let monthNumber = new Date().getDate();
+        return `${day}, ${month.slice(0, 3)} ${monthNumber}, ${new Date().toLocaleTimeString()}`
     }
 }
