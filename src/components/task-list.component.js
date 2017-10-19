@@ -44,7 +44,8 @@ export default class TaskList extends Component {
                         autoHeightMax={640}>
                         <ReactCSSTransitionGroup
                             transitionName="task"
-                            transitionEnterTimeout={300} transitionLeaveTimeout={300}>
+                            transitionEnterTimeout={300}
+                            transitionLeaveTimeout={300}>
                             {this.state.tasks.map((task, index) => {
                                 return (
                                 <Task task={task}

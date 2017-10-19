@@ -49,22 +49,6 @@ export default class Form extends Component {
                 });
             }
         }
-
-
-
-
-        // if (this.tasksService.store[props.address]) {
-        //     let taskForEdit = this.tasksService.store[props.address]
-        //         .find(t => t.id === props.taskId);
-        //     if (taskForEdit) {
-        //         this.setState({
-        //             address: taskForEdit.address,
-        //             serviceType: taskForEdit.serviceType,
-        //             taskType: taskForEdit.taskType,
-        //             taskDescription: taskForEdit.taskDescription
-        //         });
-        //     }
-        // }
     };
 
     createTask = () => {

@@ -24,7 +24,7 @@ export default class Task extends Component {
     render() {
         return (
             <div className={this.state.selectedTask ? "listContainer selectedTask" : "listContainer"}>
-                <div>{this.props.task.dueDate}</div>
+                <div className="date">{this.props.task.dueDate}</div>
                 <div className="descriptionTask">{`I need a ${this.props.task.serviceType} to ${this.props.task.taskType}`}</div>
                 {this.props.formIsOpen 
                 ? <div>

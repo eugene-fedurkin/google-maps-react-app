@@ -74,13 +74,7 @@ export default class Dashboard extends Component {
                         onActionExecuted={() => this.toggleForm(false)}
                         taskId={this.state.taskIdForEdit} />}
                 </ReactCSSTransitionGroup>
-
-                <ReactCSSTransitionGroup
-                        transitionName="modal"
-                        transitionEnterTimeout={500}
-                        transitionLeaveTimeout={300}>
-                    <Modal closeModal={this.closeModal} />
-                </ReactCSSTransitionGroup>
+                <Modal closeModal={this.closeModal} />
             </div>
         );
     }

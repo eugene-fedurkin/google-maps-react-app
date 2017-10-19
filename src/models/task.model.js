@@ -12,8 +12,11 @@ export default class TaskModel {
     }
 
     getTitle() {
-        const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-        const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        const days = ['Sunday','Monday','Tuesday','Wednesday',
+                        'Thursday','Friday','Saturday'];
+        const months = ['January','February','March','April',
+                        'May','June','July','August','September',
+                        'October','November','December'];
 
         let day = days[new Date().getDay() - 1];
         let month = months[new Date().getMonth() - 1];
