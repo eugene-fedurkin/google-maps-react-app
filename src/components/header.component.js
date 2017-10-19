@@ -20,13 +20,13 @@ export default class Header extends Component {
             <header>
                 <ul>
                     {tabs.map((tab, index) => 
-                    <li key={index} 
-                        className={this.state.selectedTab === tab ? 'nav activeLink' : 'nav'}>
-                        <Link onClick={() => this.toActiveLink(tab)}
-                            to={routing[index]}>
-                            {tab}
-                        </Link>
-                    </li>
+                        <li onClick={() => this.toActiveLink(tab)}
+                            key={index} 
+                            className={this.state.selectedTab === tab ? 'nav activeLink' : 'nav'}>
+                            <Link to={routing[index]}>
+                                {tab}
+                            </Link>
+                        </li>
                     )}
                 </ul>
             </header>

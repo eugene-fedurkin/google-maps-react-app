@@ -46,7 +46,7 @@ li:last-child {
   margin: 10px 41px;
 }
 .dashboard {
-  height: calc(100% - 74px);
+  height: calc(100% - 78px);
 }
 .tasksList > button {
   width: 334px;

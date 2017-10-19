@@ -7,4 +7,4 @@
 ## Features
 - google map API
 - add, delete, edit tasks
-- use localStorage
+- localStorage

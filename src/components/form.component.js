@@ -39,7 +39,6 @@ export default class Form extends Component {
         if (localStorage[props.address]) {
             let taskForEdit = JSON.parse(localStorage[props.address])
                 .find(t => t.id === props.taskId);
-                console.log(props ,taskForEdit, JSON.parse(localStorage[props.address]))
             if (taskForEdit) {
                 this.setState({
                     address: taskForEdit.address,

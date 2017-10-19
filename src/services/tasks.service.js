@@ -1,4 +1,4 @@
-    import TaskModel from '../models/task.model';
+import TaskModel from '../models/task.model';
 
 export default class TasksService {
     static getSingletonInstance() {
@@ -36,15 +36,12 @@ export default class TasksService {
 
     update(rawTask) {
         let task = new TaskModel(rawTask);
-        console.log('task', task)
-
         if (!localStorage[task.address]) throw new Error('Cannot find task');
         let tasks = JSON.parse(localStorage[task.address]);
         let taskIndex = tasks.findIndex(t => t.id === task.id);
         if (taskIndex < 0) throw new Error('Cannot find task');
         tasks.splice(taskIndex, 1, task);
         localStorage[task.address] = JSON.stringify(tasks);
-        console.log('taskIndex', taskIndex)
         this.emit();
     }
 
